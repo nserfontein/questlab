@@ -1,0 +1,9 @@
+[all]
+192.168.178.128
+
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=node
+ansible_ssh_pass=node
+ansible_sudo_pass=node
