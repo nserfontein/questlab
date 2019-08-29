@@ -4,14 +4,20 @@
 # node3 ansible_host=192.168.178.203
 # node4 ansible_host=192.168.178.204
 
-[rock64_wireless]
-rock1  ansible_host=192.168.178.211
-rock2  ansible_host=192.168.178.212
-rock3  ansible_host=192.168.178.213
-rock4  ansible_host=192.168.178.214
+[snodes]
+snode1  ansible_host=192.168.178.211
+snode2  ansible_host=192.168.178.212
+snode3  ansible_host=192.168.178.213
+snode4  ansible_host=192.168.178.214
 
-[chuwi_wireless]
-chuw1  ansible_host=192.168.178.231
+[mnodes]
+mnode1  ansible_host=192.168.178.221
+mnode2  ansible_host=192.168.178.222
+
+[lnodes]
+lnode1  ansible_host=192.168.178.231
+lnode2  ansible_host=192.168.178.232
+
 
 [all:vars]
 ansible_connection=ssh
