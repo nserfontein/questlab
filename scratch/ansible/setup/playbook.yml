@@ -23,11 +23,11 @@
 
     - name: update packages
       apt:
-        upgrade: yes
+        upgrade: no
         update_cache: yes
         cache_valid_time: 86400 # 1 day
 
-#    - name: install lxd
+#    - name: install docker
 #      todo
 
   handlers:

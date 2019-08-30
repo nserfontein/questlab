@@ -1,22 +1,22 @@
 # [wired]
-# node1 ansible_host=192.168.178.201
-# node2 ansible_host=192.168.178.202
-# node3 ansible_host=192.168.178.203
-# node4 ansible_host=192.168.178.204
+# s1 ansible_host=192.168.178.201
+# s2 ansible_host=192.168.178.202
+# s3 ansible_host=192.168.178.203
+# s4 ansible_host=192.168.178.204
 
 [snodes]
-snode1  ansible_host=192.168.178.211
-snode2  ansible_host=192.168.178.212
-snode3  ansible_host=192.168.178.213
-snode4  ansible_host=192.168.178.214
+s1  ansible_host=192.168.178.211
+s2  ansible_host=192.168.178.212
+s3  ansible_host=192.168.178.213
+s4  ansible_host=192.168.178.214
 
 [mnodes]
-mnode1  ansible_host=192.168.178.221
-mnode2  ansible_host=192.168.178.222
+m1  ansible_host=192.168.178.221
+m2  ansible_host=192.168.178.222
 
 [lnodes]
-lnode1  ansible_host=192.168.178.231
-lnode2  ansible_host=192.168.178.232
+l1  ansible_host=192.168.178.231
+l2  ansible_host=192.168.178.232
 
 
 [all:vars]
