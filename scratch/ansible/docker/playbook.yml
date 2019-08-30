@@ -47,6 +47,20 @@
           - containerd.io
         state: present
 
+    - name: Install Python dependencies
+      apt:
+        name:
+          - python3-setuptools
+          #- python3-dev
+          #- build-essential
+          - python3-pip
+        state: present
+
+    - name: Install docker module
+      pip:
+        name: docker
+        state: latest
+
     - name: Add the node user to Docker group
       user:
         name: node

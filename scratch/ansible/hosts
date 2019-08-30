@@ -24,3 +24,4 @@ ansible_connection=ssh
 ansible_user=node
 ansible_ssh_pass=node
 ansible_sudo_pass=node
+ansible_python_interpreter=/usr/bin/python3
