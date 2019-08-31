@@ -1,0 +1,7 @@
+---
+
+- name: Remove everything
+  hosts: all
+
+  roles:
+    - roles/docker/remove

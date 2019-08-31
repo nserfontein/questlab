@@ -1,0 +1,38 @@
+# s1 ansible_host=192.168.178.201
+# s2 ansible_host=192.168.178.202
+# s3 ansible_host=192.168.178.203
+# s4 ansible_host=192.168.178.204
+s1  ansible_host=192.168.178.211
+s2  ansible_host=192.168.178.212
+s3  ansible_host=192.168.178.213
+s4  ansible_host=192.168.178.214
+
+m1  ansible_host=192.168.178.221
+m2  ansible_host=192.168.178.222
+
+l1  ansible_host=192.168.178.231
+l2  ansible_host=192.168.178.232
+
+[snodes]
+s1
+s2
+s3
+s4
+
+[mnodes]
+m1
+m2
+
+[lnodes]
+l1
+l2
+
+[rancher]
+m1
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=node
+ansible_ssh_pass=node
+ansible_sudo_pass=node
+ansible_python_interpreter=/usr/bin/python3
