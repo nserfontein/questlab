@@ -1,23 +1,69 @@
 ---
 
-- name: Register containers
+- name: Get container IDs
   shell: docker ps -aq
   register: container_ids
+  ignore_errors: yes
 
 #- name: Show container IDs
 #  debug:
 #    msg: "{{container_ids}}"
 
-- name: Stop all containers
-  shell: docker stop $(docker ps -aq)
-  when: container_ids.stdout != ""
+- block:
+  - name: Stop all containers
+    shell: docker stop $(docker ps -aq)
 
-- name: Prune everything
-  docker_prune:
-    containers: yes
-    images: yes
-    images_filters:
-      dangling: false
-    networks: yes
-    volumes: yes
-    builder_cache: yes
+  - name: Prune everything
+    docker_prune:
+      containers: yes
+      images: yes
+      images_filters:
+        dangling: false
+      networks: yes
+      volumes: yes
+      builder_cache: yes
+
+  when: container_ids.rc == 0 and container_ids.stdout != ""
+
+- name: Uninstall Docker SDK for Python
+  pip:
+    name: docker
+    state: absent
+
+
+- name: Uninstall Docker
+  apt:
+    name:
+      - docker-ce={{docker_version}}
+      - containerd.io
+    state: absent
+
+
+
+
+
+#- name: Install packages to allow apt to use a repository over HTTPS
+#  apt:
+#    name:
+#      - apt-transport-https
+#      - ca-certificates
+#      - curl
+#      - gnupg-agent
+#      - software-properties-common
+#    state: present
+#
+#- name: Add Docker’s official GPG key
+#  apt_key:
+#    url: https://download.docker.com/linux/ubuntu/gpg
+#    state: present
+#
+#- name: Docker repository setup
+#  apt_repository:
+#    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+#    state: present
+#    update_cache: yes
+#
+#
+#
+#
+#
