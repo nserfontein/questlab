@@ -1,0 +1,23 @@
+---
+
+- name: Register containers
+  shell: docker ps -aq
+  register: container_ids
+
+#- name: Show container IDs
+#  debug:
+#    msg: "{{container_ids}}"
+
+- name: Stop all containers
+  shell: docker stop $(docker ps -aq)
+  when: container_ids.stdout != ""
+
+- name: Prune everything
+  docker_prune:
+    containers: yes
+    images: yes
+    images_filters:
+      dangling: false
+    networks: yes
+    volumes: yes
+    builder_cache: yes

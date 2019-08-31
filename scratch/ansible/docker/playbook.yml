@@ -56,7 +56,7 @@
           - python3-pip
         state: present
 
-    - name: Install docker module
+    - name: Install Docker SDK for Python
       pip:
         name: docker
         state: latest
