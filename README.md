@@ -38,8 +38,14 @@ sudo visudo
 node  ALL=(ALL) NOPASSWD:ALL
 ```
 
+# Setup
+```shell script
+cd control
+./setup.sh
+```
+
 # Reset
 ```shell script
 cd control
-./setup reset
+./setup.sh reset
 ```
