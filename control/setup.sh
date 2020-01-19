@@ -154,3 +154,13 @@ fi
 #  vagrant ssh -c "cd /vagrant/410-ingress/1-configure; ansible-playbook main.yml"
 #fi
 
+if [ "$target" == "reset" ] ; then
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: RESET"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./999-reset/1-configure/
+  ln -sf ../../config/ansible/variables.yml ./999-reset/1-configure/
+  vagrant ssh -c "cd /vagrant/999-reset/1-configure; ansible-playbook main.yml"
+fi

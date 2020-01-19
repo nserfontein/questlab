@@ -37,3 +37,9 @@ sudo visudo
 # Add to end of file:
 node  ALL=(ALL) NOPASSWD:ALL
 ```
+
+# Reset
+```shell script
+cd control
+./setup reset
+```
