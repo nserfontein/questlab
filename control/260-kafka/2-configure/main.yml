@@ -17,4 +17,4 @@
 
     - name: Wait for Kafka cluster
       shell: >
-        rancher kubectl wait kafka/csba-cluster --for=condition=Ready --timeout=600s -n kafka
+        rancher kubectl wait kafka/home-cluster --for=condition=Ready --timeout=600s -n kafka
