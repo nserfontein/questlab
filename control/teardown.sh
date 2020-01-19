@@ -6,9 +6,9 @@ if [ ! -f "./teardown.sh" ]; then
    exit 1
 fi
 
-#echo "Tearing down Servers..."
-#vagrant ssh -c "cd /vagrant/210-servers/1-provision; terraform destroy -auto-approve"
-#
+# TODO:
+# https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cleaning-cluster-nodes/
+
 echo "Tearing down Controller..."
 vagrant destroy -f
 

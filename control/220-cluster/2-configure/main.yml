@@ -55,7 +55,7 @@
 
   tasks:
     - name: Register cluster status
-      shell: sleep 60 && rancher wait --timeout 3600 csba-sandbox
+      shell: sleep 60 && rancher wait --timeout 3600 home
       async: 1000
       poll: 0
       register: cluster_status
@@ -89,7 +89,7 @@
         value: "{{ project_id.stdout }}"
 
     - name: Get Rancher cluster creator ID
-      shell: rancher inspect --type cluster csba-sandbox --format '{{ '{{' }} .creatorId {{ '}}' }}'
+      shell: rancher inspect --type cluster home --format '{{ '{{' }} .creatorId {{ '}}' }}'
       register: creator_id
 
     - name: Save Rancher cluster creator ID

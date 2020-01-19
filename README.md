@@ -18,7 +18,8 @@
 ## Intel Nodes
 - [Lubuntu](http://cdimage.ubuntu.com/lubuntu/releases/18.04/release/lubuntu-18.04.3-desktop-amd64.iso)
 - Select Minimal
-- Username, Password and Hostname: `node`
+- Hostname: `nodeX`
+- Username, Password: `node`
 
 ```shell script
 sudo apt install -y ssh

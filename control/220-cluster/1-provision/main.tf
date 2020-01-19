@@ -13,7 +13,7 @@ resource "rancher2_setting" "server-url" {
   value = var.rancher_server_url
 }
 
-resource "rancher2_cluster" "csba-sandbox" {
+resource "rancher2_cluster" "home" {
   name = var.rancher_cluster_name
   rke_config {
     network {
