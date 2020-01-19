@@ -30,7 +30,6 @@
     name: docker
     state: absent
 
-
 - name: Uninstall Docker
   apt:
     name:
