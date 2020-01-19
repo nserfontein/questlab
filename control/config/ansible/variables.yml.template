@@ -13,7 +13,7 @@ docker_install_script: "https://releases.rancher.com/install-docker/{{ docker_ve
 # ecg_shared_registry: "dock.es.ecg.tools/mp"
 # ecg_user_registry: "dock.es.ecg.tools/{ECG_USERNAME}"
 #
-rancher_version: "2.3.3"
+rancher_version: "2.3.4"
 rancher_api_version: "3"
 rancher_cli_version: "2.3.2"
 rancher_host: "192.168.178.201"
