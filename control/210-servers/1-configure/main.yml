@@ -35,26 +35,32 @@
       delay: 10
       retries: 20
 
-    - name: Upgrade packages 2 (retry until dpkg unlocked) # FIXME: wait for lock
-      apt:
-        update_cache: yes
-        upgrade: yes
-        cache_valid_time: 86400 # 1 day
-      register: apt_status
-      until: apt_status is success
-      delay: 10
-      retries: 10
+#    - name: Upgrade packages 2 (retry until dpkg unlocked) # FIXME: wait for lock
+#      apt:
+#        update_cache: yes
+#        upgrade: yes
+#        cache_valid_time: 86400 # 1 day
+#      register: apt_status
+#      until: apt_status is success
+#      delay: 10
+#      retries: 10
 
   tasks:
+
+    - name: Install basic tools
+      apt:
+        name:
+          - curl
+        state: present
 
     - name: Install Docker
       shell: curl {{ docker_install_script }} | sh
       args:
         creates: /usr/bin/docker
 
-    - name: Add cloud user to Docker group
+    - name: Add 'node' user to Docker group
       user:
-        name: cloud
+        name: node
         groups: docker
         append: yes
 
@@ -196,7 +202,7 @@
         regexp: '^rancher login '
         line: rancher login {{ rancher_api_url }} --token {{ rancher_token.data.Value }} --skip-verify
       with_items:
-        - /home/cloud
+        - /home/node
         - /root
 
     - name: Publish Rancher directory
@@ -213,18 +219,18 @@
         prompt: "Wait for servers to stabilize"
         seconds: 30
 
-- hosts: localhost
-  vars_files: variables.yml
-  connection: local
-  become: no
-  gather_facts: no
-
-  tasks:
-
-    - name: Wait for DNS propagation
-      shell: ping -c 1 {{ rancher_host }}
-      register: ping_status
-      until: ping_status is success
-      delay: 10
-      retries: 300
-      tags: focus
+#- hosts: localhost
+#  vars_files: variables.yml
+#  connection: local
+#  become: no
+#  gather_facts: no
+#
+#  tasks:
+#
+#    - name: Wait for DNS propagation
+#      shell: ping -c 1 {{ rancher_host }}
+#      register: ping_status
+#      until: ping_status is success
+#      delay: 10
+#      retries: 300
+#      tags: focus

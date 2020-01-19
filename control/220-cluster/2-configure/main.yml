@@ -1,0 +1,128 @@
+---
+
+#- hosts: localhost
+#  vars_files: variables.yml
+#  connection: local
+#  become: no
+#  gather_facts: no
+#
+#  tasks:
+#
+#    - name: Wait for DNS propagation
+#      shell: ping -c 1 {{ rancher_host }}
+#      register: ping_status
+#      until: ping_status is success
+#      delay: 10
+#      retries: 300
+#      tags: focus
+
+- hosts: rancher
+
+  tasks:
+    - name: Save Rancher add-node command
+      consul_kv:
+        key: rancher/add-node
+        value: "{{ lookup('file', '/home/vagrant/add-node-command.txt') }}"
+
+- hosts: masters
+  vars_files: variables.yml
+
+  tasks:
+    - name: Read add-node command
+      uri:
+        url: "{{ rancher_add_node_command_lookup }}"
+        return_content: yes
+      register: add_node_command
+
+    - name: Add master nodes to cluster
+      shell: "{{ add_node_command.content }} --node-name {{ ansible_hostname }} --etcd --controlplane"
+
+- hosts: workers
+  vars_files: variables.yml
+
+  tasks:
+    - name: Read add-node command
+      uri:
+        url: "{{ rancher_add_node_command_lookup }}"
+        return_content: yes
+      register: add_node_command
+
+    - name: Add worker nodes to cluster
+      shell: "{{ add_node_command.content }} --node-name {{ ansible_hostname }} --worker"
+
+- hosts: rancher
+  vars_files: variables.yml
+
+  tasks:
+    - name: Register cluster status
+      shell: sleep 60 && rancher wait --timeout 3600 csba-sandbox
+      async: 1000
+      poll: 0
+      register: cluster_status
+
+    - name: Wait for cluster to start (This may take a few minutes...)
+      async_status:
+        jid: "{{ cluster_status.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 300
+
+    - name: Switch Rancher context
+      shell: rancher context switch Default
+
+    - name: Get Rancher cluster ID
+      shell: rancher inspect --type project Default --format '{{ '{{' }} .id {{ '}}' }}' | tr ":" "\n" | head -n 1
+      register: cluster_id
+
+    - name: Save Rancher cluster ID
+      consul_kv:
+        key: rancher/cluster-id
+        value: "{{ cluster_id.stdout }}"
+
+    - name: Get Rancher project ID
+      shell: rancher inspect --type project Default --format '{{ '{{' }} .id {{ '}}' }}' | tr ":" "\n" | tail -n 1
+      register: project_id
+
+    - name: Save Rancher project ID
+      consul_kv:
+        key: rancher/project-id
+        value: "{{ project_id.stdout }}"
+
+    - name: Get Rancher cluster creator ID
+      shell: rancher inspect --type cluster csba-sandbox --format '{{ '{{' }} .creatorId {{ '}}' }}'
+      register: creator_id
+
+    - name: Save Rancher cluster creator ID
+      consul_kv:
+        key: rancher/creator-id
+        value: "{{ creator_id.stdout }}"
+
+- hosts: all
+  vars_files: variables.yml
+
+  tasks:
+    - name: Wait for Rancher
+      wait_for:
+        host: "{{ rancher_host }}"
+        port: 443
+
+    - name: Wait for Consul
+      wait_for:
+        host: "{{ rancher_host }}"
+        port: 8500
+
+#- hosts: localhost
+#  vars_files: variables.yml
+#  connection: local
+#  become: no
+#  gather_facts: no
+#
+#  tasks:
+#
+#    - name: Wait for DNS propagation
+#      shell: ping -c 1 {{ rancher_host }}
+#      register: ping_status
+#      until: ping_status is success
+#      delay: 10
+#      retries: 300
+#      tags: focus

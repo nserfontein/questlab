@@ -28,24 +28,24 @@ if [ "$target" == "servers" ] || [ "$target" == "all" ]; then
   ln -sf ../../config/ansible/variables.yml ./210-servers/1-configure/
   vagrant ssh -c "cd /vagrant/210-servers/1-configure; ansible-playbook main.yml"
 fi
-#
-#if [ "$target" == "cluster" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: CLUSTER"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./220-cluster/1-provision/
-#  vagrant ssh -c "cd /vagrant/220-cluster/1-provision; terraform init; terraform apply -auto-approve"
-#  echo ""
-#  echo "=========================================="
-#  echo "CONFIGURING: CLUSTER"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/ansible/hosts ./220-cluster/2-configure/
-#  ln -sf ../../config/ansible/variables.yml ./220-cluster/2-configure/
-#  vagrant ssh -c "cd /vagrant/220-cluster/2-configure; ansible-playbook main.yml"
-#fi
+
+if [ "$target" == "cluster" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: CLUSTER"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./220-cluster/1-provision/
+  vagrant ssh -c "cd /vagrant/220-cluster/1-provision; terraform init; terraform apply -auto-approve"
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: CLUSTER"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./220-cluster/2-configure/
+  ln -sf ../../config/ansible/variables.yml ./220-cluster/2-configure/
+  vagrant ssh -c "cd /vagrant/220-cluster/2-configure; ansible-playbook main.yml"
+fi
 #
 #if [ "$target" == "storage" ] || [ "$target" == "all" ]; then
 #  echo ""

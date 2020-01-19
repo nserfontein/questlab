@@ -21,29 +21,29 @@
 #   default = "dev-{ECG_USERNAME}"
 # }
 #
-# variable "rancher_api_url" {
-#   type = "string"
-#   description = "Endpoint for the Rancher API"
-#   default = "https://rancher.dev-{ECG_USERNAME}.ams1.cloud/v3"
-# }
-#
-# variable "rancher_cluster_name" {
-#   type = "string"
-#   description = "Name of the rancher cluster that's being created"
-#   default = "csba-sandbox"
-# }
-#
-# variable "rancher_token_lookup" {
-#   default = "http://rancher.dev-{ECG_USERNAME}.ams1.cloud:8500/v1/kv/rancher/token?raw"
-# }
-#
-# variable "rancher_server_url" {
-#   default = "https://rancher.dev-{ECG_USERNAME}.ams1.cloud"
-# }
-#
-# variable "rancher_network_plugin" {
-#   default = "canal"
-# }
+variable "rancher_api_url" {
+  type = "string"
+  description = "Endpoint for the Rancher API"
+  default = "https://192.168.178.201/v3"
+}
+
+variable "rancher_cluster_name" {
+  type = "string"
+  description = "Name of the rancher cluster that's being created"
+  default = "home"
+}
+
+variable "rancher_token_lookup" {
+  default = "http://192.168.178.201:8500/v1/kv/rancher/token?raw"
+}
+
+variable "rancher_server_url" {
+  default = "https://192.168.178.201"
+}
+
+variable "rancher_network_plugin" {
+  default = "canal"
+}
 #
 # variable "mysql_root_password" {
 #   default = "root123"

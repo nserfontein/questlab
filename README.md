@@ -16,13 +16,12 @@
 # Operating System
 
 ## Intel Nodes
-- [Lubuntu](http://cdimage.ubuntu.com/lubuntu/releases/18.04/release/lubuntu-18.04-alternate-amd64.iso)
-- Language: American English
-- Region: Amsterdam
-- Username, Password and Hostname: node
+- [Lubuntu](http://cdimage.ubuntu.com/lubuntu/releases/18.04/release/lubuntu-18.04.3-desktop-amd64.iso)
+- Select Minimal
+- Username, Password and Hostname: `node`
 
 ```shell script
-sudo apt install ssh curl
+sudo apt install -y ssh
 ```
 
 ## ROCK64 Nodes

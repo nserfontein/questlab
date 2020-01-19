@@ -28,11 +28,11 @@ rancher_project_id_lookup: "{{ rancher_lookup_url }}/project-id?raw"
 rancher_cluster_id_lookup: "{{ rancher_lookup_url }}/cluster-id?raw"
 rancher_cluster_creator_id_lookup: "{{ rancher_lookup_url }}/creator-id?raw"
 rancher_pipeline_executor_quota: "0"
-#
-# consul_version: "1.6.1"
-#
-# kubectl_version: "1.16.0"
-# kubectl_url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
+
+consul_version: "1.6.1"
+
+kubectl_version: "1.16.0"
+kubectl_url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
 #
 # github_host: "github.corp.ebay.com"
 # github_organization: "ecg-marktplaats"
