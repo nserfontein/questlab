@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-18.04"
+
+  config.vm.hostname = "home.controller"
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "home.controller"
+    vb.memory = 1024
+    vb.cpus = 2
+  end
+
+#   config.vm.network "private_network", ip: "192.168.123.123"
+#
+  config.ssh.insert_key = false
+  config.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
+  config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+#
+#   # FIXME: Needed?
+#   config.vm.provision "shell", privileged: true, inline: <<-SHELL
+#     cp -r /home/vagrant/.ssh /root/.ssh
+#   SHELL
+
+end

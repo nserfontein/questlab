@@ -1,1 +1,11 @@
+.DS_Store
 .idea
+.vagrant
+
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+
+control/config/ansible/hosts
+control/config/ansible/variables.yml
+control/config/terraform/variables.tf

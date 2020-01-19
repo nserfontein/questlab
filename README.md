@@ -27,3 +27,13 @@ sudo apt install ssh
 
 ## ROCK64 Nodes
 - TODO
+
+# Access
+```shell script
+ssh-copy-id -i ~/.ssh/id_rsa node@192.168.178.20x
+
+ssh node@192.168.178.20x
+sudo visudo
+# Add to end of file:
+node  ALL=(ALL) NOPASSWD:ALL
+```
