@@ -8,8 +8,8 @@ ansible_python_interpreter: "/usr/bin/python3"
 # ecg_username: "{ECG_USERNAME}"
 # ecg_password: "{ECG_PASSWORD}"
 #
-# docker_version: "18.09"
-# docker_install_script: "https://releases.rancher.com/install-docker/{{ docker_version }}.sh"
+docker_version: "18.09"
+docker_install_script: "https://releases.rancher.com/install-docker/{{ docker_version }}.sh"
 # ecg_shared_registry: "dock.es.ecg.tools/mp"
 # ecg_user_registry: "dock.es.ecg.tools/{ECG_USERNAME}"
 #

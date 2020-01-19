@@ -16,13 +16,13 @@
 # Operating System
 
 ## Intel Nodes
-- [Lubuntu](http://cdimage.ubuntu.com/lubuntu/releases/19.10/release/lubuntu-19.10-desktop-amd64.iso)
+- [Lubuntu](http://cdimage.ubuntu.com/lubuntu/releases/18.04/release/lubuntu-18.04-alternate-amd64.iso)
 - Language: American English
 - Region: Amsterdam
 - Username, Password and Hostname: node
 
 ```shell script
-sudo apt install ssh
+sudo apt install ssh curl
 ```
 
 ## ROCK64 Nodes

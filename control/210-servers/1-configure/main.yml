@@ -1,20 +1,20 @@
 ---
 
-- hosts: localhost
-  vars_files: variables.yml
-  connection: local
-  become: no
-  gather_facts: no
-
-  tasks:
-
-    - name: Wait for DNS propagation
-      shell: ping -c 1 {{ rancher_host }}
-      register: ping_status
-      until: ping_status is success
-      delay: 10
-      retries: 300
-      tags: focus
+#- hosts: localhost
+#  vars_files: variables.yml
+#  connection: local
+#  become: no
+#  gather_facts: no
+#
+#  tasks:
+#
+#    - name: Wait for DNS propagation
+#      shell: ping -c 1 {{ rancher_host }}
+#      register: ping_status
+#      until: ping_status is success
+#      delay: 10
+#      retries: 300
+#      tags: focus
 
 - hosts: all
   vars_files: variables.yml
@@ -51,10 +51,6 @@
       shell: curl {{ docker_install_script }} | sh
       args:
         creates: /usr/bin/docker
-      register: apt_status  # FIXME: wait for lock
-      until: apt_status is success
-      delay: 10
-      retries: 10
 
     - name: Add cloud user to Docker group
       user:
