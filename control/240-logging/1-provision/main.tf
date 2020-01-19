@@ -48,11 +48,11 @@ resource "rancher2_app" "efk" {
 //    "kibana.language": "en"
     "kibana.service.type": "NodePort"
 //    "kibana.enableProxy": "true"
-    "elasticsearch.replicas": "2"
+    "elasticsearch.replicas": "1"
 //    "elasticsearch.antiAffinity": "hard"
     "elasticsearch.persistence.enabled": "true"
     "elasticsearch.persistence.storageClass": "longhorn"
-    "elasticsearch.persistence.size": "30Gi"
+    "elasticsearch.persistence.size": "10Gi"
 //    "filebeat.enabled": "true"
 //    "metricbeat.enabled": "true"
   }

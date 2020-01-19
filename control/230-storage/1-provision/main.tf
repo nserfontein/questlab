@@ -41,7 +41,7 @@ resource "rancher2_app" "longhorn" {
     "csi.attacherReplicaCount": null
     "csi.provisionerReplicaCount": null
     "persistence.defaultClass": true
-    "persistence.defaultClassReplicaCount": "3"
+    "persistence.defaultClassReplicaCount": "1"
     "defaultSettings.backupTarget": null
     "defaultSettings.backupTargetCredentialSecret": null
     "defaultSettings.createDefaultDiskLabeledNodes": false
@@ -50,7 +50,7 @@ resource "rancher2_app" "longhorn" {
     "defaultSettings.storageOverProvisioningPercentage": "500"
     "defaultSettings.storageMinimalAvailablePercentage": "10"
     "defaultSettings.upgradeChecker": true
-    "defaultSettings.defaultReplicaCount": "3"
+    "defaultSettings.defaultReplicaCount": "1"
     "defaultSettings.guaranteedEngineCPU": "0"
     "defaultSettings.defaultLonghornStaticStorageClass": "longhorn-static"
     "defaultSettings.backupstorePollInterval": "300"
