@@ -1,0 +1,52 @@
+---
+
+- hosts: localhost
+  vars_files: variables.yml
+  connection: local
+  become: no
+  gather_facts: no
+
+  tasks:
+
+    - name: Get Rancher cluster ID
+      uri:
+        url: "{{ rancher_cluster_id_lookup }}"
+        return_content: yes
+      register: cluster_id
+
+    - name: Get Rancher token
+      uri:
+        url: "{{ rancher_token_lookup }}"
+        return_content: yes
+      register: rancher_token
+
+    - name: Enable Monitoring
+      uri:
+        url: "{{ rancher_api_url }}/clusters/{{ cluster_id.content }}?action=enableMonitoring"
+        method: POST
+        body_format: json
+        validate_certs: no
+        headers:
+          Cookie: "R_USERNAME={{ rancher_username }}; R_SESS={{ rancher_token.content }}"
+        body:
+          answers:
+            grafana.persistence.enabled: 'true'
+            prometheus.persistence.enabled: 'true'
+            prometheus.persistence.storageClass: longhorn
+            grafana.persistence.storageClass: longhorn
+            grafana.persistence.size: 10Gi
+            prometheus.persistence.size: 50Gi
+        status_code: [204]
+
+    - name: Enable sidecar injection - default
+      uri:
+        url: "{{ rancher_api_url }}/cluster/{{ cluster_id.content }}/namespaces/default"
+        method: PUT
+        body_format: json
+        validate_certs: no
+        headers:
+          Cookie: "R_USERNAME={{ rancher_username }}; R_SESS={{ rancher_token.content }}"
+        body:
+          labels:
+            istio-injection: enabled
+        status_code: [200]

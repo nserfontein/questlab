@@ -1,0 +1,20 @@
+---
+
+- hosts: rancher
+  vars_files: variables.yml
+  gather_facts: no
+
+  tasks:
+
+    - name: Upload Kafka definition
+      copy:
+        src: kafka-persistent-single.yml
+        dest: /tmp
+
+    - name: Configure Kafka cluster
+      shell: >
+        rancher kubectl apply -f /tmp/kafka-persistent-single.yml -n kafka
+
+    - name: Wait for Kafka cluster
+      shell: >
+        rancher kubectl wait kafka/csba-cluster --for=condition=Ready --timeout=600s -n kafka

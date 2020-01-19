@@ -66,42 +66,42 @@ if [ "$target" == "logging" ] || [ "$target" == "all" ]; then
   ln -sf ../../config/terraform/variables.tf ./240-logging/1-provision/
   vagrant ssh -c "cd /vagrant/240-logging/1-provision; terraform init; terraform apply -auto-approve"
 fi
-#
-#if [ "$target" == "monitoring" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "CONFIGURING: MONITORING"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/ansible/hosts ./250-monitoring/1-configure/
-#  ln -sf ../../config/ansible/variables.yml ./250-monitoring/1-configure/
-#  vagrant ssh -c "cd /vagrant/250-monitoring/1-configure; ansible-playbook main.yml"
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: MONITORING"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./250-monitoring/2-provision/
-#  vagrant ssh -c "cd /vagrant/250-monitoring/2-provision; terraform init; terraform apply -auto-approve"
-#fi
-#
-#if [ "$target" == "kafka" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: KAFKA"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./260-kafka/1-provision/
-#  vagrant ssh -c "cd /vagrant/260-kafka/1-provision; terraform init; terraform apply -auto-approve"
-#  echo ""
-#  echo "=========================================="
-#  echo "CONFIGURING: KAFKA"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/ansible/hosts ./260-kafka/2-configure/
-#  ln -sf ../../config/ansible/variables.yml ./260-kafka/2-configure/
-#  vagrant ssh -c "cd /vagrant/260-kafka/2-configure; ansible-playbook main.yml"
-#fi
+
+if [ "$target" == "monitoring" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: MONITORING"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./250-monitoring/1-configure/
+  ln -sf ../../config/ansible/variables.yml ./250-monitoring/1-configure/
+  vagrant ssh -c "cd /vagrant/250-monitoring/1-configure; ansible-playbook main.yml"
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: MONITORING"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./250-monitoring/2-provision/
+  vagrant ssh -c "cd /vagrant/250-monitoring/2-provision; terraform init; terraform apply -auto-approve"
+fi
+
+if [ "$target" == "kafka" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: KAFKA"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./260-kafka/1-provision/
+  vagrant ssh -c "cd /vagrant/260-kafka/1-provision; terraform init; terraform apply -auto-approve"
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: KAFKA"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./260-kafka/2-configure/
+  ln -sf ../../config/ansible/variables.yml ./260-kafka/2-configure/
+  vagrant ssh -c "cd /vagrant/260-kafka/2-configure; ansible-playbook main.yml"
+fi
 #
 #if [ "$target" == "mariadb" ] || [ "$target" == "all" ]; then
 #  echo ""
