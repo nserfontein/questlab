@@ -102,24 +102,16 @@ if [ "$target" == "kafka" ] || [ "$target" == "all" ]; then
   ln -sf ../../config/ansible/variables.yml ./260-kafka/2-configure/
   vagrant ssh -c "cd /vagrant/260-kafka/2-configure; ansible-playbook main.yml"
 fi
-#
-#if [ "$target" == "mariadb" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: MARIADB"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./270-mariadb/1-provision/
-#  vagrant ssh -c "cd /vagrant/270-mariadb/1-provision; terraform init; terraform apply -auto-approve"
-#  echo ""
-#  echo "=========================================="
-#  echo "CONFIGURING: MARIADB"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/ansible/hosts ./270-mariadb/2-configure/
-#  ln -sf ../../config/ansible/variables.yml ./270-mariadb/2-configure/
-#  vagrant ssh -c "cd /vagrant/270-mariadb/2-configure; ansible-playbook main.yml"
-#fi
+
+if [ "$target" == "cassandra" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: CASSANDRA"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./270-cassandra/1-provision/
+  vagrant ssh -c "cd /vagrant/270-cassandra/1-provision; terraform init; terraform apply -auto-approve"
+fi
 #
 #if [ "$target" == "wiremock" ] || [ "$target" == "all" ]; then
 #  echo ""
