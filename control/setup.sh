@@ -56,16 +56,16 @@ if [ "$target" == "storage" ] || [ "$target" == "all" ]; then
   ln -sf ../../config/terraform/variables.tf ./230-storage/1-provision/
   vagrant ssh -c "cd /vagrant/230-storage/1-provision; terraform init; terraform apply -auto-approve"
 fi
-#
-#if [ "$target" == "logging" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: LOGGING"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./240-logging/1-provision/
-#  vagrant ssh -c "cd /vagrant/240-logging/1-provision; terraform init; terraform apply -auto-approve"
-#fi
+
+if [ "$target" == "logging" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: LOGGING"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./240-logging/1-provision/
+  vagrant ssh -c "cd /vagrant/240-logging/1-provision; terraform init; terraform apply -auto-approve"
+fi
 #
 #if [ "$target" == "monitoring" ] || [ "$target" == "all" ]; then
 #  echo ""
