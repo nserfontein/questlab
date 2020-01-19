@@ -53,6 +53,12 @@
           - curl
         state: present
 
+    - name: Install Longhorn dependencies
+      apt:
+        name:
+          - open-iscsi
+        state: present
+
     - name: Install Docker
       shell: curl {{ docker_install_script }} | sh
       args:

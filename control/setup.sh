@@ -46,16 +46,16 @@ if [ "$target" == "cluster" ] || [ "$target" == "all" ]; then
   ln -sf ../../config/ansible/variables.yml ./220-cluster/2-configure/
   vagrant ssh -c "cd /vagrant/220-cluster/2-configure; ansible-playbook main.yml"
 fi
-#
-#if [ "$target" == "storage" ] || [ "$target" == "all" ]; then
-#  echo ""
-#  echo "=========================================="
-#  echo "PROVISIONING: STORAGE"
-#  echo "=========================================="
-#  echo ""
-#  ln -sf ../../config/terraform/variables.tf ./230-storage/1-provision/
-#  vagrant ssh -c "cd /vagrant/230-storage/1-provision; terraform init; terraform apply -auto-approve"
-#fi
+
+if [ "$target" == "storage" ] || [ "$target" == "all" ]; then
+  echo ""
+  echo "=========================================="
+  echo "PROVISIONING: STORAGE"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/terraform/variables.tf ./230-storage/1-provision/
+  vagrant ssh -c "cd /vagrant/230-storage/1-provision; terraform init; terraform apply -auto-approve"
+fi
 #
 #if [ "$target" == "logging" ] || [ "$target" == "all" ]; then
 #  echo ""
