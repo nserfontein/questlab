@@ -33,3 +33,4 @@
 
     - name: Reboot
       shell: reboot
+      ignore_errors: yes

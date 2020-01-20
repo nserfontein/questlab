@@ -47,5 +47,5 @@ cd control
 # Reset
 ```shell script
 cd control
-./setup.sh reset
+./reset.sh
 ```
