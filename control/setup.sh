@@ -157,6 +157,17 @@ if [ "$target" == "status" ] ; then
   vagrant ssh -c "cd /vagrant/910-status/1-configure; ansible-playbook main.yml"
 fi
 
+if [ "$target" == "reboot" ] ; then
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: REBOOT"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./980-reboot/1-configure/
+  ln -sf ../../config/ansible/variables.yml ./980-reboot/1-configure/
+  vagrant ssh -c "cd /vagrant/980-reboot/1-configure; ansible-playbook main.yml"
+fi
+
 if [ "$target" == "reset" ] ; then
   echo ""
   echo "=========================================="

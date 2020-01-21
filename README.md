@@ -53,6 +53,12 @@ cd control
 ./status.sh
 ```
 
+# Reboot
+```shell script
+cd control
+./reboot.sh
+```
+
 # Reset
 ```shell script
 cd control

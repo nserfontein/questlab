@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  vars_files: variables.yml
+  gather_facts: no
+
+  pre_tasks:
+
+    - name: Wait for servers
+      wait_for_connection:
+
+  tasks:
+
+    - name: Reboot
+      shell: reboot
+      ignore_errors: yes
