@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  vars_files: variables.yml
+  gather_facts: yes
+
+  pre_tasks:
+
+    - name: Wait for servers
+      wait_for_connection:

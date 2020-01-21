@@ -2,7 +2,7 @@
 set -e
 
 if [ ! -f "./teardown.sh" ]; then
-   echo "This script must be run in the 'home-cluster/control' directory"
+   echo "This script must be run in the 'questlab/control' directory"
    exit 1
 fi
 

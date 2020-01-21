@@ -26,13 +26,16 @@ sudo apt install -y ssh
 ```
 
 ## ROCK64 Nodes
-- TODO
+- [Pine64 Installer](https://github.com/pine64dev/PINE64-Installer)
+- [Armbian Ubuntu Bionic Desktop](https://wiki.pine64.org/index.php/ROCK64_Software_Release#Armbian_Ubuntu_Bionic_Desktop_on_mainline_Kernel_.5BmicroSD_.2F_eMMC_Boot.5D)
+- Settings > Armbian Config > Personal > Hostname > `nodeX`
+- Username, Password: `node`
 
 # Access
 ```shell script
-ssh-copy-id -i ~/.ssh/id_rsa node@192.168.178.20x
+ssh-copy-id -i ~/.ssh/id_rsa node@192.168.178.20
 
-ssh node@192.168.178.20x
+ssh node@192.168.178.20
 sudo visudo
 # Add to end of file:
 node  ALL=(ALL) NOPASSWD:ALL
@@ -42,6 +45,12 @@ node  ALL=(ALL) NOPASSWD:ALL
 ```shell script
 cd control
 ./setup.sh
+```
+
+# Status
+```shell script
+cd control
+./status.sh
 ```
 
 # Reset

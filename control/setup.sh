@@ -146,6 +146,17 @@ fi
 #  vagrant ssh -c "cd /vagrant/410-ingress/1-configure; ansible-playbook main.yml"
 #fi
 
+if [ "$target" == "status" ] ; then
+  echo ""
+  echo "=========================================="
+  echo "CONFIGURING: STATUS"
+  echo "=========================================="
+  echo ""
+  ln -sf ../../config/ansible/hosts ./910-status/1-configure/
+  ln -sf ../../config/ansible/variables.yml ./910-status/1-configure/
+  vagrant ssh -c "cd /vagrant/910-status/1-configure; ansible-playbook main.yml"
+fi
+
 if [ "$target" == "reset" ] ; then
   echo ""
   echo "=========================================="
