@@ -43,3 +43,4 @@ resource "rancher2_app" "cassandra" {
     update = "20m"
   }
 }
+
