@@ -64,3 +64,17 @@ cd control
 cd control
 ./reset.sh
 ```
+
+# Workstation Setup
+
+## Configure `kubectl`
+```shell script
+brew install kubectl
+mkdir ~/.kube && rm -f ~/.kube/config
+cd ~/dev/home/questlab/control
+vagrant ssh -c "ssh node@192.168.178.201 -- rancher context switch Default"
+vagrant ssh -c "ssh node@192.168.178.201 -- rancher clusters kf home" > ~/.kube/config
+
+# This command should return `home`
+kubectl config current-context
+```
