@@ -1,4 +1,0 @@
-# Scratch
-```shell script
-
-```
