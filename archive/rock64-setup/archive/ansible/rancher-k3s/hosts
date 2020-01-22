@@ -1,0 +1,13 @@
+rock1 ansible_host=192.168.178.201 ansible_user=rock64 ansible_ssh_pass=rock64
+rock2 ansible_host=192.168.178.202 ansible_user=rock64 ansible_ssh_pass=rock64
+rock3 ansible_host=192.168.178.203 ansible_user=rock64 ansible_ssh_pass=rock64
+rock4 ansible_host=192.168.178.204 ansible_user=rock64 ansible_ssh_pass=rock64
+
+
+[masters]
+rock1
+
+[nodes]
+rock2
+rock3
+rock4
