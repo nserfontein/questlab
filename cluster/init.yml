@@ -34,30 +34,44 @@
     - name: Remove Containers
       shell: docker rm -f $(docker ps -qa)
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Remove Images
       shell: docker rmi -f $(docker images -q)
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Remove Volumes
       shell: docker volume rm $(docker volume ls -q)
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Uninstall Docker
-      shell: apt-get purge -y docker-ce
+      shell: apt-get purge -y docker-ce docker-ce-cli containerd.io docker-compose
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Remove Docker files
-      shell: rm -rf /var/lib/docker /usr/bin/docker*
+      shell: rm -rf /var/lib/docker* /usr/bin/docker*
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Unmount
       shell: for mount in $(mount | grep tmpfs | grep '/var/lib/kubelet' | awk '{ print $3 }') /var/lib/kubelet /var/lib/rancher; do umount $mount; done
       ignore_errors: yes
+      tags:
+        - docker
 
     - name: Remove directories
       shell: rm -rf /etc/ceph /etc/cni /etc/kubernetes /opt/cni /opt/rke /run/secrets/kubernetes.io /run/calico /run/flannel /var/lib/calico /var/lib/etcd /var/lib/cni /var/lib/kubelet /var/lib/rancher/rke/log /var/log/containers /var/log/pods /var/run/calico
       ignore_errors: yes
+      tags:
+        - docker
 
 - name: K3S
   hosts: all
