@@ -5,18 +5,6 @@
 
   tasks:
 
-#    - name: Install Python dependencies
-#      apt:
-#        name:
-#          - python3-setuptools
-#          - python3-pip
-#        state: present
-#
-#    - name: Install Python modules
-#      pip:
-#        name:
-#          - docker
-
     - name: Remove Containers
       shell: docker rm -f $(docker ps -qa)
       ignore_errors: yes

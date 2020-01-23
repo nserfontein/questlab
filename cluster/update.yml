@@ -13,4 +13,3 @@
       until: apt_status is success
       delay: 10
       retries: 20
-
