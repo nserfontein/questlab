@@ -71,7 +71,7 @@ ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 
 # Reset
 ```shell script
-# Repeat until no critical errors in results
+# Repeat all these steps until "Remove directories" has no critical errors
 ansible-playbook ./init.yml
 ansible-playbook ./reboot.yml
 ansible-playbook ./status.yml

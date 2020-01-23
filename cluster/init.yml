@@ -1,19 +1,5 @@
 ---
 
-- name: Ubuntu
-  hosts: all
-
-  tasks:
-    - name: Upgrade packages (retry until dpkg unlocked)
-      apt:
-        update_cache: yes
-        upgrade: yes
-        cache_valid_time: 86400 # 1 day
-      register: apt_status
-      until: apt_status is success
-      delay: 10
-      retries: 20
-
 - name: Rancher
   hosts: all
 

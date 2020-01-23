@@ -1,7 +1,7 @@
 ---
 
 - name: Rancher
-  hosts: control
+  hosts: rancher
   vars:
     docker_version: 18.09
     docker_install_script: https://releases.rancher.com/install-docker/{{ docker_version }}.sh
