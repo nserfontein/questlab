@@ -49,8 +49,14 @@ sudo visudo
 node  ALL=(ALL) NOPASSWD:ALL
 ```
 
+# Setup
+```shell script
+ansible-playbook ./init.yml
+ansible-playbook ./setup.yml
+```
+
 # Configure `kubectl`
 ```shell script
 rm -f ~/.kube/config
-ssh node@192.168.178.201 -- cat /home/node/kubeconfig > ~/.kube/config
+ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 ```
