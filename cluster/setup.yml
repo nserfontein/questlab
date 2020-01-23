@@ -35,5 +35,13 @@
       raw: install k3sup /usr/local/bin/
 
     # TODO: Cluster
-    - name: Master Cluster Seed
+    - name: Master
       shell: k3sup install --ip 192.168.178.204 --user node
+
+    - name: Workers
+      shell: k3sup join --ip {{ item }} --server-ip 192.168.178.204 --user $USER
+      with_items:
+        - 192.168.178.202
+        - 192.168.178.203
+
+

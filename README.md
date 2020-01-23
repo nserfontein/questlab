@@ -48,3 +48,9 @@ sudo visudo
 # Add to end of file:
 node  ALL=(ALL) NOPASSWD:ALL
 ```
+
+# Configure `kubectl`
+```shell script
+rm -f ~/.kube/config
+ssh node@192.168.178.201 -- cat /home/node/kubeconfig > ~/.kube/config
+```
