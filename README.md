@@ -68,3 +68,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 rm -f ~/.kube/config
 ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 ```
+
+# Rancher on Workstation
+```shell script
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+```

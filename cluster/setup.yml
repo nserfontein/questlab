@@ -6,13 +6,8 @@
 
   tasks:
     - name: Download k3sup
-      raw: curl -sLS https://get.k3sup.dev | sh
+      shell: curl -sLS https://get.k3sup.dev | sh
 
-#    - name: Install k3sup
-#      become: yes
-#      raw: install k3sup /usr/local/bin/
-
-    # TODO: Cluster
     - name: Master
       shell: k3sup install --ip 192.168.178.205 --user node
 
