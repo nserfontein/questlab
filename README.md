@@ -51,8 +51,18 @@ node  ALL=(ALL) NOPASSWD:ALL
 
 # Setup
 ```shell script
+ansible-playbook ./status.yml
 ansible-playbook ./init.yml
 ansible-playbook ./setup.yml
+```
+
+# Reset
+```shell script
+# Repeat all these steps until "Remove directories" has no critical errors
+ansible-playbook ./init.yml
+ansible-playbook ./reboot.yml
+ansible-playbook ./status.yml
+ansible-playbook ./init.yml
 ```
 
 # Setup `kubectl` on Control
@@ -69,15 +79,7 @@ rm -f ~/.kube/config
 ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 ```
 
-# Reset
-```shell script
-# Repeat all these steps until "Remove directories" has no critical errors
-ansible-playbook ./init.yml
-ansible-playbook ./reboot.yml
-ansible-playbook ./status.yml
-ansible-playbook ./init.yml
-```
-
 # Rancher
+- Note: Rancher can take a while to start up
 - [Dashboard](192.168.178.201)
 - Clustes > Add Cluster > Import
