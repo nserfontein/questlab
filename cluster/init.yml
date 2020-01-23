@@ -1,13 +1,9 @@
 ---
-- name: Configure QuestLab Cluster
+
+- name: Ubuntu
   hosts: all
-  gather_facts: no
 
-  pre_tasks:
-
-    - name: Wait for servers
-      wait_for_connection:
-
+  tasks:
     - name: Upgrade packages (retry until dpkg unlocked)
       apt:
         update_cache: yes
@@ -17,6 +13,9 @@
       until: apt_status is success
       delay: 10
       retries: 20
+
+- name: Rancher
+  hosts: control
 
   tasks:
 
@@ -42,6 +41,14 @@
 
     - name: Remove Volumes
       shell: docker volume rm $(docker volume ls -q)
+      ignore_errors: yes
+
+    - name: Uninstall Docker
+      shell: apt-get purge -y docker-ce
+      ignore_errors: yes
+
+    - name: Remove Docker files
+      shell: rm -rf /var/lib/docker /usr/bin/docker*
       ignore_errors: yes
 
     - name: Unmount
