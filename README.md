@@ -82,4 +82,4 @@ ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 # Rancher
 - Note: Rancher can take a while to start up
 - [Dashboard](192.168.178.201)
-- Clustes > Add Cluster > Import
+- Clusters > Add Cluster > Import
