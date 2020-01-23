@@ -13,6 +13,8 @@
       shell: curl {{ docker_install_script }} | sh
       args:
         creates: /usr/bin/docker
+      tags:
+        - docker
 
     - name: Run Rancher
       docker_container:
@@ -22,6 +24,8 @@
         ports:
           - "80:80"
           - "443:443"
+      tags:
+        - docker
 
 - name: K3sup
   hosts: control
@@ -30,12 +34,18 @@
   tasks:
     - name: Download k3sup
       shell: curl -sLS https://get.k3sup.dev | sh
+      tags:
+        - k3sup
 
     - name: Master
       shell: k3sup install --ip 192.168.178.205 --user node
+      tags:
+        - k3sup
 
     - name: Workers
       shell: k3sup join --ip {{ item }} --server-ip 192.168.178.205 --user $USER
       with_items:
         - 192.168.178.202
         - 192.168.178.203
+      tags:
+        - k3sup

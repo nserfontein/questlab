@@ -77,3 +77,7 @@ ansible-playbook ./reboot.yml
 ansible-playbook ./status.yml
 ansible-playbook ./init.yml
 ```
+
+# Rancher
+- [Dashboard](192.168.178.201)
+- Clustes > Add Cluster > Import
