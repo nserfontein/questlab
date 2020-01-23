@@ -35,7 +35,7 @@ armbian-config
 # Personal > Hostname > nodeX
 ```
 
-# Access
+# Once Offs
 - TODO: Move to Ansible
 ```shell script
 ssh-copy-id -i ~/.ssh/id_rsa node@192.168.178.20
@@ -55,7 +55,15 @@ ansible-playbook ./init.yml
 ansible-playbook ./setup.yml
 ```
 
-# Configure `kubectl`
+# Setup `kubectl` on Control
+```shell script
+ssh node@192.168.178.204
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/arm64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+# Configure `kubectl` on Workstation
 ```shell script
 rm -f ~/.kube/config
 ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
