@@ -14,6 +14,10 @@
       delay: 10
       retries: 20
 
+    - name: Remove K3S
+      shell: /usr/local/bin/k3s-uninstall.sh
+      ignore_errors: yes
+
 - name: Rancher
   hosts: control
 

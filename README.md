@@ -40,6 +40,9 @@ armbian-config
 ```shell script
 ssh-copy-id -i ~/.ssh/id_rsa node@192.168.178.20
 
+scp ~/.ssh/id_rsa node@192.168.178.20:~/.ssh/
+scp ~/.ssh/id_rsa.pub node@192.168.178.20:~/.ssh/
+
 ssh node@192.168.178.20
 sudo visudo
 # Add to end of file:

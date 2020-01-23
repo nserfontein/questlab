@@ -24,10 +24,16 @@
 
 - name: K3sup
   hosts: control
+  become: no
 
   tasks:
-    - name: Install
+    - name: Download k3sup
       raw: curl -sLS https://get.k3sup.dev | sh
 
+    - name: Install k3sup
+      become: yes
+      raw: install k3sup /usr/local/bin/
 
-TODO: WIP
+    # TODO: Cluster
+    - name: Master Cluster Seed
+      shell: k3sup install --ip 192.168.178.204 --user node
