@@ -1,4 +1,26 @@
 ---
+#- name: Install Rancher
+#  hosts: control
+#  vars:
+#    docker_version: 18.09
+#    docker_install_script: https://releases.rancher.com/install-docker/{{ docker_version }}.sh
+#    rancher_version: 2.3.4
+#
+#  tasks:
+#
+#    - name: Install Docker
+#      shell: curl {{ docker_install_script }} | sh
+#      args:
+#        creates: /usr/bin/docker-init
+#
+#    - name: Run Rancher
+#      docker_container:
+#        name: rancher
+#        image: rancher/rancher:v{{ rancher_version }}
+#        restart_policy: unless-stopped
+#        ports:
+#          - "80:80"
+#          - "443:443"
 
 - name: K3sup
   hosts: control
@@ -17,5 +39,3 @@
         - 192.168.178.201
         - 192.168.178.202
         - 192.168.178.203
-
-
