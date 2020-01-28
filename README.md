@@ -1,7 +1,7 @@
 # Networking
 
 ## CHUWI
-- Controller
+- Worker
 - 192.168.78.201
 
 ## Mini PCs
@@ -81,5 +81,10 @@ ssh node@192.168.178.204 -- cat /home/node/kubeconfig > ~/.kube/config
 
 # Rancher
 - Note: Rancher can take a while to start up
-- [Dashboard](192.168.178.201)
+- [Dashboard](https://192.168.178.204)
 - Clusters > Add Cluster > Import
+
+--- 
+
+# Resources
+- [K3SUP](https://github.com/alexellis/k3sup)

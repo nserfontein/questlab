@@ -29,6 +29,12 @@
       tags:
         - docker
 
+    - name: Fix Packages
+      shell: dpkg --configure -a
+      ignore_errors: yes
+      tags:
+        - docker
+
     - name: Remove Docker files
       shell: rm -rf /var/lib/docker* /usr/bin/docker*
       ignore_errors: yes
