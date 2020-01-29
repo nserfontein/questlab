@@ -15,6 +15,7 @@ vagrant provision --provision-with build-image
 
 # Scratch 2
 ```shell script
+cd /tmp
 git clone https://github.com/solo-io/packer-builder-arm-image
 cd packer-builder-arm-image
 docker build -t packer-builder-arm .
