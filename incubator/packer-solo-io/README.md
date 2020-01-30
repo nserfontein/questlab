@@ -1,6 +1,3 @@
-# TODO:
-- Note if your image is arm64, set qemu_binary to qemu-aarch64-static in your configuration json file.
-
 # Scratch 1  
 ```shell script
 cd /tmp
@@ -28,6 +25,9 @@ docker run \
   -v ${PWD}/output:/build/output \
   packer-builder-arm build samples/raspbian_golang.json
 ```
+
+# Scratch 3
+- [See](https://github.com/nserfontein/packer-builder-arm-image)
 
 # Resources
 - [Steps](https://github.com/solo-io/packer-builder-arm-image)
